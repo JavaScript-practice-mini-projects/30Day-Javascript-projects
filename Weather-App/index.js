@@ -31,25 +31,25 @@ async function weatherCheck() {
             document.querySelector('.wind').innerHTML = data.wind.speed + 'Km/h'
             
             if(data.weather[0].main == 'Rain'){
-                weatherIcon.src = '../img/rain.png'
+                weatherIcon.src = './img/rain.png'
             }
             else if(data.weather[0].main == 'Clear'){
-                weatherIcon.src = '../img/clear-sun.png'
+                weatherIcon.src = './img/clear-sun.png'
             }
             else if(data.weather[0].main == 'Cloudy'){
-                weatherIcon.src = '../img/cloudy.png'
+                weatherIcon.src = './img/cloudy.png'
             }
             else if(data.weather[0].main == 'Drizzle'){
-                weatherIcon.src = '../img/drizzle.png'
+                weatherIcon.src = './img/drizzle.png'
             }
             else if(data.weather[0].main == 'Mist'){
-                weatherIcon.src = '../img/mist.png'
+                weatherIcon.src = './img/mist.png'
             }
             else if(data.weather[0].main == 'Snow'){
-                weatherIcon.src = '../img/snow.png'
+                weatherIcon.src = './img/snow.png'
             }
             else if(data.weather[0].main == 'Haze'){
-                weatherIcon.src = '../img/haze.png'
+                weatherIcon.src = './img/haze.png'
             }
             
         }
