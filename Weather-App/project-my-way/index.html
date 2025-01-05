@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- fontAwesome -->
+    <script src="https://kit.fontawesome.com/37df3b9ad9.js" crossorigin="anonymous"></script>
+    <!-- main style sheet -->
+     <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cir"></div>
+<div class="blur"></div>
+    <div class="wrapper">
+        <div class="weather">
+            <div class="menu-setting">
+            <i class="fa-solid fa-bars"></i>
+            <p id="realTimeDisplay"></p>
+            <i class="fa-solid fa-gear"></i>
+            </div>
+            <!-- search area  -->
+            <div class="search-area">
+                <i id="searchButton" class="fa-solid fa-magnifying-glass"></i>
+                <input  type="search" name="search" id="citySearch" placeholder="Search City">
+            </div>
+            <!-- city name  -->
+            <div class="city-name">
+                <h4 id="cityName">Dhaka</h4>
+                <p id="weatherDate">jan 05 2025</p>
+            </div>
+            <!-- temperature  -->
+            <div class="temperature">
+                <img id="weatherImg">
+                <p id="temperatureCelsius">21°C</p>
+            </div>
+            <!-- humidity and wind speed  -->
+            <div class="humidity-wind">
+                <p id="humidity">Humidity: 60%</p>
+                <p id="windSpeed">wind: 2 Km/h</p>
+            </div>
+            <!-- display hourly temperature  -->
+            <div class="hourly-temperature">
+                <div class="hors-temp">
+                    <p>21°C</p>
+                    <img id="" >
+                    <p>Now</p>
+                </div>
+                <div class="hors-temp">
+                    <p>21 °C</p>
+                    <img id="" >
+                    <p>Now</p>
+                </div>
+                <div class="hors-temp">
+                    <p>21°C</p>
+                    <img id="" >
+                    <p>Now</p>
+                </div>
+                <div class="hors-temp">
+                    <p>21°C</p>
+                    <img id="" >
+                    <p>Now</p>
+                </div>
+                <div class="hors-temp">
+                    <p>21°C</p>
+                    <img id="" >
+                    <p>Now</p>
+                </div>
+
+            </div>
+            <!-- favorite location  -->
+            <div class="favorite-location">
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Favorite Location</p>
+                </span>
+                <a href="#">See More</a>
+            </div>
+            <!-- various cities temperature  -->
+            <div class="cities-temp-container">
+                <div class="city-temp-item">
+                    <span><p>21°C</p><p>Dhaka</p></span>
+                    <span><img id="" ></span>
+                </div>
+                <div class="city-temp-item">
+                    <span><p>21°C</p><p>Dhaka</p></span>
+                    <span><img id="" ></span>
+                </div>
+                <div class="city-temp-item">
+                    <span><p>21°C</p><p>Dhaka</p></span>
+                    <span><img id="" ></span>
+                </div>
+                <div class="city-temp-item">
+                    <span><p>21°C</p><p>Dhaka </p></span>
+                    <span><img id="" ></span>
+                </div>
+            </div>
+            <!-- <div class="bottom-menu">
+                <i class="fa-solid fa-house"></i>
+                <i class="fa-regular fa-message"></i>
+                <i class="fa-solid fa-location-dot"></i>
+                <i class="fa-regular fa-user"></i>
+            </div> -->
+        </div>
+        
+    </div>
+    
+    <!-- javaScript  -->
+     <script src="./index.js"></script>
+</body>
+</html>
