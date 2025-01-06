@@ -21,6 +21,10 @@ let apiKey = '4141d67a67254dd7fac44aa883b116a8';
 
 
 
+
+
+
+
 window.onload = () => {
     main()
 
@@ -76,16 +80,31 @@ function weatherUpdate(temp,humidity, windSpeed, name, weatherConditions){
     }else{
         document.getElementById('weatherImg').src = weatherIcon['cloudy']
     }
-
-    console.log(weatherConditions)
 }
 
+function fakeWeatherUpdate(temp){
 
+    let fakeTmpIcon = Math.floor(Math.random() * 8);
+
+    document.getElementById('fakeTemp1').textContent = `${fakeTempGenerator(temp)} ${'°C'}`
+    document.getElementById('fakeTemp2').textContent = `${fakeTempGenerator(temp)} ${'°C'}`
+    document.getElementById('fakeTemp3').textContent = `${fakeTempGenerator(temp)} ${'°C'}`
+    document.getElementById('fakeTemp4').textContent = `${fakeTempGenerator(temp)} ${'°C'}`
+    document.getElementById('fakeTemp5').textContent = `${fakeTempGenerator(temp)} ${'°C'}`
+
+
+    document.getElementById('fakeTempIcon1').src = weatherIcon[getRandomKey(weatherIcon)];
+    document.getElementById('fakeTempIcon2').src = weatherIcon[getRandomKey(weatherIcon)];
+    document.getElementById('fakeTempIcon3').src = weatherIcon[getRandomKey(weatherIcon)];
+    document.getElementById('fakeTempIcon4').src = weatherIcon[getRandomKey(weatherIcon)];
+    document.getElementById('fakeTempIcon5').src = weatherIcon[getRandomKey(weatherIcon)];
+}
 
 // units function
 
 async function getWeatherData(){
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+
     try{
         const response = await fetch(url)
         if(!response.ok) throw new Error(`HTTP error ${response.status}`)
@@ -104,16 +123,20 @@ async function getWeatherData(){
  */
 function weatherConverting(data){
 
-    const {main, wind, weather, sys, name} = data
-    const temp = `${Math.round(main.temp)} ${'°C'} `
-    const humidity = `Humidity: ${main.humidity}${'%'}`
-    const windSpeed = `Wind: ${wind.speed} ${'Km/h'}`
-    const names = `${name}, ${sys.country}`
-    const weatherConditions = weather[0].description.toLowerCase()
-
-    weatherUpdate(temp,humidity, windSpeed, names, weatherConditions)
+    const {main, wind, weather, sys, name, coord} = data;
+    const temp = `${Math.round(main.temp)} ${'°C'} `;
+    const humidity = `Humidity: ${main.humidity}${'%'}`;
+    const windSpeed = `Wind: ${wind.speed} ${'Km/h'}`;
+    const names = `${name}, ${sys.country}`;
+    const weatherConditions = weather[0].description.toLowerCase();
+    weatherUpdate(temp,humidity, windSpeed, names, weatherConditions);
+    fakeWeatherUpdate(temp)
 }
 
+
+/**
+ * time and date generator
+ */
 function timeGenerator(){
     const months = [
         "Jan", "Feb", "Mar", "Apr", 
@@ -132,19 +155,45 @@ function timeGenerator(){
     let month = months[currentTime.getMonth()];
     let day = days[currentTime.getDay()];
 
-    let hours = String(currentTime.getHours())
-    let minutes = String(currentTime.getMinutes())
-    let seconds = String(currentTime.getSeconds())
+    let hours = timeFormat(currentTime.getHours())
+    let minutes = timeFormat(currentTime.getMinutes())
+    let seconds = timeFormat(currentTime.getSeconds())
     
-    const hour = hours < 10 ? '0' + hours : hours;
-    const minute = minutes < 10 ? '0' + minutes : minutes;
-    const second = seconds < 10 ?  '0' + seconds  : seconds;
 
 
 
     document.getElementById('weatherDate').textContent = `${day} ${month} ${year}`
-    document.getElementById('realTimeDisplay').textContent = `${hour} ${minute} ${second}`
+    document.getElementById('realTimeDisplay').textContent = `${hours}:${minutes}:${seconds}`
     
 }
-timeGenerator()
-setInterval(timeGenerator, 1000)
+setInterval(timeGenerator, 1000) // call timeGenerator function every 1 second.
+
+
+/**
+ * this will be time format
+ * @param {String} unit 
+ * @returns String
+ */
+function timeFormat(unit){
+    return unit < 10 ? '0' + unit : unit;
+}
+
+
+/**
+ * generate fake temperature
+ * @returns fake temp 
+ */
+function fakeTempGenerator(temp){
+    const temps = Number(temp.slice(0, 2));
+    return Math.floor(Math.random() * (5 - (-5) + 1) - 5 + temps);
+}
+
+/**
+ * 
+ * @returns String
+ */
+function getRandomKey(obj) {
+    let keys = Object.keys(obj);
+    let randomIndexForWetherIcon = Math.floor(Math.random() * keys.length)
+    return keys[randomIndexForWetherIcon]
+}
